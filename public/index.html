@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>p5</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/addons/p5.sound.min.js"></script> -->
+    <script src="lib/ollama-fetch.js"></script>
+    <script src="lib/generateFragFromAI.js"></script>
+    <script src="sketch.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        display: block;
+      }
+      #codeArea {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 2;
+        background-color: transparent; /* 背景を透過 */
+        border: none;
+        color: white;
+        padding: 10px;
+        pointer-events: none;
+        resize: none;
+      }
+      #aiStatus {
+        position: absolute;
+        /* top: 20px; */
+        /* right: 20px; */
+        padding: 0px 3px 3px 2px;
+        left: 10px;
+        z-index: 2;
+        background-color: black;
+        color: white;
+        pointer-events: none;
+        height: 15px;
+        font-size: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p id="aiStatus"></p>
+    <textarea id="codeArea" readonly></textarea>
+  </body>
+</html>
