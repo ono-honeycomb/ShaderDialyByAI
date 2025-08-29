@@ -1,0 +1,2 @@
+# ShaderDialyByAI
+AIによるシェーダー日記
