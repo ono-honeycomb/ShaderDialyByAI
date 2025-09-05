@@ -1,0 +1,25 @@
+{
+  "name": "shaderdialybyai",
+  "version": "1.0.0",
+  "description": "AI によるシェーダー日記",
+  "main": "",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@google/genai": "^1.17.0",
+    "@sanity/client": "^7.11.0",
+    "dotenv": "^17.2.2"
+  }
+}
