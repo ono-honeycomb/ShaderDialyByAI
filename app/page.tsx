@@ -1,7 +1,14 @@
+'use client';
+
 import AIStatus from '@/components/AIStatus';
 import CodeViewer from '@/components/CodeVierwer';
 import P5Canvas from '@/components/P5Canvas';
-import ShaderViewer from '@/components/ShaderViewer';
+// import ShaderViewer from '@/components/ShaderViewer';
+import dynamic from 'next/dynamic';
+
+const ShaderViewer = dynamic(() => import('@/components/ShaderViewer'), {
+  ssr: false, // サーバーサイドレンダリングを無効化
+});
 
 export default function HomePage() {
   const vertCode = `

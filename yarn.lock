@@ -17,17 +17,10 @@
   resolved "https://registry.npmjs.org/@davepagurek/bezier-path/-/bezier-path-0.0.2.tgz"
   integrity sha512-4L9ddgzZc9DRGyl1RrS3z5nwnVJoyjsAelVG4X1jh4tVxryEHr4H9QavhxW/my6Rn3669Qz6mhv8gd5O/WeFTA==
 
-"@img/sharp-darwin-x64@0.34.3":
+"@img/sharp-win32-x64@0.34.3":
   version "0.34.3"
-  resolved "https://registry.npmjs.org/@img/sharp-darwin-x64/-/sharp-darwin-x64-0.34.3.tgz"
-  integrity sha512-yHpJYynROAj12TA6qil58hmPmAwxKKC7reUqtGLzsOHfP7/rniNGTL8tjWX6L3CTV4+5P4ypcS7Pp+7OB+8ihA==
-  optionalDependencies:
-    "@img/sharp-libvips-darwin-x64" "1.2.0"
-
-"@img/sharp-libvips-darwin-x64@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@img/sharp-libvips-darwin-x64/-/sharp-libvips-darwin-x64-1.2.0.tgz"
-  integrity sha512-M64XVuL94OgiNHa5/m2YvEQI5q2cl9d/wk0qFTDVXcYzi43lxuiFTftMR1tOnFQovVXNZJ5TURSDK2pNe9Yzqg==
+  resolved "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.34.3.tgz"
+  integrity sha512-OWwz05d++TxzLEv4VnsTz5CmZ6mI6S05sfQGEMrNrQcOEERbX46332IvE7pO/EUiw7jUrrS40z/M7kPyjfl04g==
 
 "@isaacs/fs-minipass@^4.0.0":
   version "4.0.1"
@@ -80,10 +73,10 @@
   resolved "https://registry.npmjs.org/@next/env/-/env-15.5.2.tgz"
   integrity sha512-Qe06ew4zt12LeO6N7j8/nULSOe3fMXE4dM6xgpBQNvdzyK1sv5y4oAP3bq4LamrvGCZtmRYnW8URFCeX5nFgGg==
 
-"@next/swc-darwin-x64@15.5.2":
+"@next/swc-win32-x64-msvc@15.5.2":
   version "15.5.2"
-  resolved "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.5.2.tgz"
-  integrity sha512-2DjnmR6JHK4X+dgTXt5/sOCu/7yPtqpYt8s8hLkHFK3MGkka2snTv3yRMdHvuRtJVkPwCGsvBSwmoQCHatauFQ==
+  resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.5.2.tgz"
+  integrity sha512-W5VvyZHnxG/2ukhZF/9Ikdra5fdNftxI6ybeVKYvBPDtyx7x4jPPSNduUkfH5fo3zG0JQ0bPxgy41af2JX5D4Q==
 
 "@swc/helpers@0.5.15":
   version "0.5.15"
@@ -105,10 +98,10 @@
     source-map-js "^1.2.1"
     tailwindcss "4.1.13"
 
-"@tailwindcss/oxide-darwin-x64@4.1.13":
+"@tailwindcss/oxide-win32-x64-msvc@4.1.13":
   version "4.1.13"
-  resolved "https://registry.npmjs.org/@tailwindcss/oxide-darwin-x64/-/oxide-darwin-x64-4.1.13.tgz"
-  integrity sha512-aAJ3bbwrn/PQHDxCto9sxwQfT30PzyYJFG0u/BWZGeVXi5Hx6uuUOQEI2Fa43qvmUjTRQNZnGqe9t0Zntexeuw==
+  resolved "https://registry.npmjs.org/@tailwindcss/oxide-win32-x64-msvc/-/oxide-win32-x64-msvc-4.1.13.tgz"
+  integrity sha512-3+LKesjXydTkHk5zXX01b5KMzLV1xl2mcktBJkje7rhFUpUlYJy7IMOLqjIRQncLTa1WZZiFY/foAeB5nmaiTw==
 
 "@tailwindcss/oxide@4.1.13":
   version "4.1.13"
@@ -314,10 +307,10 @@ libtess@^1.2.2:
   resolved "https://registry.npmjs.org/libtess/-/libtess-1.2.2.tgz"
   integrity sha512-Nps8HPeVVcsmJxUvFLKVJcCgcz+1ajPTXDVAVPs6+giOQP4AHV31uZFFkh+CKow/bkB7GbZWKmwmit7myaqDSw==
 
-lightningcss-darwin-x64@1.30.1:
+lightningcss-win32-x64-msvc@1.30.1:
   version "1.30.1"
-  resolved "https://registry.npmjs.org/lightningcss-darwin-x64/-/lightningcss-darwin-x64-1.30.1.tgz"
-  integrity sha512-k1EvjakfumAQoTfcXUcHQZhSpLlkAuEkdMBsI/ivWw9hL+7FtilQc0Cy3hrx0AAQrVtQAbMI7YjCgYgvn37PzA==
+  resolved "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.30.1.tgz"
+  integrity sha512-PVqXh48wh4T53F/1CCu8PIPCxLzWyCnn/9T5W1Jpmdy5h9Cwd+0YQS6/LwhHXSafuc61/xg9Lv5OrCby6a++jg==
 
 lightningcss@1.30.1:
   version "1.30.1"

@@ -1,4 +1,5 @@
-// components/P5Canvas.tsx
+// components/ShaderViewer.tsx
+
 'use client';
 
 import p5 from 'p5';
