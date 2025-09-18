@@ -1,0 +1,110 @@
+// クライアントのみで動く
+
+const apiUrl = 'http://localhost:11434/api';
+const model = 'codellama';
+const role = 'user';
+const format = {
+  type: 'object',
+  properties: {
+    title: {
+      type: 'string',
+    },
+    theme: {
+      type: 'string',
+    },
+    feeling: {
+      type: 'string',
+    },
+    description: {
+      type: 'string',
+    },
+    date: {
+      type: 'string',
+    },
+    time: {
+      type: 'string',
+    },
+    tags: {
+      type: 'array',
+      items: {
+        type: 'string',
+      },
+      fragCode: {
+        type: 'string',
+      },
+      // vertCode: {
+      //   type: "string",
+      // },
+    },
+  },
+  required: [
+    'title',
+    'theme',
+    'feeling',
+    'description',
+    'date',
+    'time',
+    'tags',
+    'fragCode',
+    // "vertCode"
+  ],
+};
+
+const fetchOllama = async (message: string) => {
+  const response = await fetch(`${apiUrl}/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: model,
+      messages: [{ role: role, content: message }],
+      stream: false,
+      format: format,
+    }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+  try {
+    return JSON.parse(await data.message.content);
+  } catch (e) {
+    throw e;
+    // return { error: e instanceof Error ? e.message : String(e) };
+  }
+};
+
+// class Ollama {
+//   constructor() {
+//     this.apiUrl = 'http://localhost:11434/api';
+//     this.model = 'gemma3'; // 使用するモデルを指定
+//   }
+
+//   async chat(message) {
+//     const response = await fetch(`${this.apiUrl}/chat`, {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({
+//         model: this.model,
+//         messages: [{ role: 'user', content: message }],
+//         stream: false,
+//       }),
+//     });
+//     const data = await response.json();
+//     return data.message.content;
+//   }
+// }
+
+// const ollamaChat = async (message) => {
+//   const response = await fetch('http://localhost:11434/api/chat', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({
+//       model: 'gemma3', // 使用するモデルを指定
+//       messages: [{ role: 'user', content: message }],
+//       stream: false,
+//     }),
+//   });
+//   const data = await response.json();
+//   return data.message.content;
+// };
+
+export { fetchOllama };

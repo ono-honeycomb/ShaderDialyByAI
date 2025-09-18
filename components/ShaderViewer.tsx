@@ -18,7 +18,7 @@ const ShaderViewer = ({ vertCode, fragCode }: ShaderViewerProps) => {
 
     const sketch = (p: p5) => {
       p.setup = () => {
-        p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
+        p.createCanvas(200, 200, p.WEBGL);
 
         myShader = p.createShader(vertCode, fragCode);
         p.shader(myShader);
@@ -36,6 +36,10 @@ const ShaderViewer = ({ vertCode, fragCode }: ShaderViewerProps) => {
         p.quad(-1, -1, -1, 1, 1, 1, 1, -1);
         p.resetShader();
       };
+
+      // p.resizeCanvas = () => {
+      //   p.resizeCanvas(p.windowWidth, p.windowHeight);
+      // };
     };
 
     if (sketchRef.current) {
@@ -45,7 +49,7 @@ const ShaderViewer = ({ vertCode, fragCode }: ShaderViewerProps) => {
         p5Instance.remove();
       };
     }
-  }, []);
+  }, [vertCode, fragCode]);
 
   return <div ref={sketchRef} />;
 };
