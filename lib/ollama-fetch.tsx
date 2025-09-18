@@ -18,10 +18,7 @@ const format = {
     description: {
       type: 'string',
     },
-    date: {
-      type: 'string',
-    },
-    time: {
+    dateTime: {
       type: 'string',
     },
     tags: {
@@ -42,8 +39,7 @@ const format = {
     'theme',
     'feeling',
     'description',
-    'date',
-    'time',
+    'dateTime',
     'tags',
     'fragCode',
     // "vertCode"

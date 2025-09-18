@@ -1,4 +1,6 @@
-import test from 'node:test';
+'use client';
+
+import { generateFrag } from '@/lib/generateFragFromAI';
 
 interface MetaViewerProps {
   id: number;
@@ -32,6 +34,22 @@ const page = () => {
   testData = testData.concat(testData);
   testData = testData.concat(testData);
 
+  const onInputKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      // submitToIFrame(event.target.value);
+
+      const res = generateFrag(event.target.value);
+    }
+  };
+
+  const submitToIFrame = (message: string) => {
+    const iframe = document.querySelector('iframe') as HTMLIFrameElement;
+    if (iframe) {
+      iframe.contentWindow?.postMessage(message, '*');
+    }
+  };
+
   return (
     <>
       <div className="flex space-x-0">
@@ -59,6 +77,8 @@ const page = () => {
           type="text"
           className="w-full p-2 rounded-md"
           placeholder="入力欄"
+          // onChange={(event) => console.log(event)}
+          onKeyDown={onInputKeyDown}
         />
       </div>
     </>

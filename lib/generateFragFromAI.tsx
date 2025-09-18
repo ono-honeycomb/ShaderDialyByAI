@@ -6,8 +6,7 @@ interface responseFromAI {
   theme: string;
   feeling: string;
   description: string;
-  date: string;
-  time: string;
+  dateTime: string;
   tags: string[];
   fragCode: string;
   // vertCode: string;

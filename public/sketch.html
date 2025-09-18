@@ -20,7 +20,22 @@
 
   <body>
     <script>
-      let myShader;
+      // iframeからのメッセージをリッスンする
+      window.addEventListener('message', (event) => {
+        // console.log(event.data);
+        // console.log('in p5.js message event listener');
+
+        const _fragCode = event.data;
+        const _shader = createShader(vertCode, _fragCode);
+        shader(_shader);
+        // todo
+        // shaderのコンパイルエラー取得
+        //
+        myShaders.push(_shader);
+      });
+
+      // let myShader;
+      let myShaders = [];
 
       const vertCode = `
         precision highp float;
@@ -33,9 +48,16 @@
       const fragCode = `
         precision highp float;
         uniform float u_time;
-        uniform vec2 u_mouse; // マウス位置 0~1
         void main() {
-          vec3 color = vec3(sin(u_time) * 0.5 + 0.5, u_mouse.x, u_mouse.y);
+          vec3 color = vec3(sin(u_time) * 0.5 + 0.5, 0, 0);
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `;
+      const fragCode2 = `
+        precision highp float;
+        uniform float u_time;
+        void main() {
+          vec3 color = vec3(0, sin(u_time) * 0.5 + 0.5, 0);
           gl_FragColor = vec4(color, 1.0);
         }
       `;
@@ -43,20 +65,48 @@
       function setup() {
         createCanvas(windowWidth, windowHeight, WEBGL);
 
-        myShader = createShader(vertCode, fragCode);
-        shader(myShader);
+        let tempShader = createShader(vertCode, fragCode);
+        shader(tempShader);
 
         // shaderコンパイルエラー取得
         //
+
+        myShaders.push(tempShader);
+
+        tempShader = createShader(vertCode, fragCode2);
+        shader(tempShader);
+        myShaders.push(tempShader);
+        tempShader = createShader(vertCode, fragCode);
+        shader(tempShader);
+        myShaders.push(tempShader);
       }
 
       function draw() {
         background(220);
 
-        myShader.setUniform('u_time', millis() / 1000.0);
+        // translate(-width / 2, -height / 2);
         noStroke();
-        shader(myShader);
-        quad(-1, -1, -1, 1, 1, 1, 1, -1);
+        if (myShaders.length == 0) return;
+
+        const rangeLength = 2; // 1から-1までの長さ
+        const interval = rangeLength / myShaders.length; // 間隔
+        for (let i = 0; i < myShaders.length; i++) {
+          myShaders[i].setUniform('u_time', millis() / 1000.0);
+
+          shader(myShaders[i]);
+          console.log(1 - interval * i);
+          quad(
+            -1,
+            -(1 - interval * i),
+            -1,
+            -(1 - interval * i) + interval,
+            1,
+            -(1 - interval * i) + interval,
+            1,
+            -(1 - interval * i)
+          );
+          // resetShader();
+        }
         resetShader();
       }
 
