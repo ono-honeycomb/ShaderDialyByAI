@@ -7,28 +7,3 @@ body {
 canvas {
   display: block;
 }
-#codeArea {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 2;
-  background-color: transparent; /* 背景を透過 */
-  border: none;
-  color: white;
-  padding: 10px;
-  pointer-events: none;
-  resize: none;
-}
-#aiStatus {
-  position: absolute;
-  /* top: 20px; */
-  /* right: 20px; */
-  padding: 0px 3px 3px 2px;
-  left: 10px;
-  z-index: 2;
-  background-color: black;
-  color: white;
-  pointer-events: none;
-  height: 15px;
-  font-size: 10px;
-}
