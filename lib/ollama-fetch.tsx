@@ -1,8 +1,9 @@
 // クライアントのみで動く
 
 const apiUrl = 'http://localhost:11434/api';
-const model = 'codellama';
+const model = 'codegemma'; //'codellama'; // gemma3
 const role = 'user';
+const timeoutSec = 5; // 5秒でタイムアウト
 const format = {
   type: 'object',
   properties: {
@@ -18,28 +19,24 @@ const format = {
     description: {
       type: 'string',
     },
-    dateTime: {
-      type: 'string',
-    },
     tags: {
       type: 'array',
       items: {
         type: 'string',
       },
-      fragCode: {
-        type: 'string',
-      },
-      // vertCode: {
-      //   type: "string",
-      // },
     },
+    fragCode: {
+      type: 'string',
+    },
+    // vertCode: {
+    //   type: "string",
+    // },
   },
   required: [
     'title',
     'theme',
     'feeling',
     'description',
-    'dateTime',
     'tags',
     'fragCode',
     // "vertCode"
@@ -47,24 +44,41 @@ const format = {
 };
 
 const fetchOllama = async (message: string) => {
-  const response = await fetch(`${apiUrl}/chat`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: model,
-      messages: [{ role: role, content: message }],
-      stream: false,
-      format: format,
-    }),
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => {
+    // console.log(
+    //   timeoutSec + '秒が経過しました。リクエストをキャンセルします。'
+    // );
+    // controller.abort();
+  }, timeoutSec * 1000);
 
-  const data = await response.json();
-  console.log(data);
   try {
-    return JSON.parse(await data.message.content);
+    const response = await fetch(`${apiUrl}/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: model,
+        messages: [{ role: role, content: message }],
+        stream: false,
+        format: format,
+      }),
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId); // タイムアウト処理を無効化
+
+    const data = await response.json();
+    // console.log(data);
+    try {
+      const result = JSON.parse(data.message.content);
+      // AIに与えた構造以外のデータも欲しいのを含めてあげる
+      result.createdAt = data.created_at;
+      return result;
+    } catch (e) {
+      throw e;
+      // return { error: e instanceof Error ? e.message : String(e) };
+    }
   } catch (e) {
     throw e;
-    // return { error: e instanceof Error ? e.message : String(e) };
   }
 };
 

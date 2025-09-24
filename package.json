@@ -8,11 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "next": "15.5.2",
     "ollama": "^0.5.18",
     "p5": "^2.0.5",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-syntax-highlighter": "^15.6.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

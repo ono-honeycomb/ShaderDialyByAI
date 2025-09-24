@@ -1,3 +1,4 @@
+import { autoSized } from 'p5';
 import React from 'react';
 
 type AIStatusProps = {
@@ -8,11 +9,11 @@ const AIStatus: React.FC<AIStatusProps> = ({ status }) => {
   return (
     <div
       style={{
-        position: 'absolute',
+        // position: 'absolute',
         // top: "20px",
         // right: "20px",
         padding: '0px 3px 3px 2px',
-        left: '10px',
+        // left: '10px',
         zIndex: 2,
         backgroundColor: 'black',
         color: 'white',

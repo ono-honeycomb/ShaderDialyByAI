@@ -6,69 +6,16 @@ interface responseFromAI {
   theme: string;
   feeling: string;
   description: string;
-  dateTime: string;
   tags: string[];
   fragCode: string;
+  createdAt: Date;
   // vertCode: string;
-}
-
-// const oolamaFormatStructure = {
-//   type: 'object',
-//   properties: {
-//     title: {
-//       type: 'string',
-//     },
-//     theme: {
-//       type: 'string',
-//     },
-//     feeling: {
-//       type: 'string',
-//     },
-//     description: {
-//       type: 'string',
-//     },
-//     date: {
-//       type: 'string',
-//     },
-//     time: {
-//       type: 'string',
-//     },
-//     tags: {
-//       type: 'array',
-//       items: {
-//         type: 'string',
-//       },
-//       fragCode: {
-//         type: 'string',
-//       },
-//       // vertCode: {
-//       //   type: "string",
-//       // },
-//     },
-//     required: [
-//       'title',
-//       'theme',
-//       'feeling',
-//       'description',
-//       'date',
-//       'time',
-//       'tags',
-//       'fragCode',
-//       // "vertCode"
-//     ],
-//   },
-// };
-
-interface GetPromptParams {
-  referenceCode: string;
-}
-interface GenerateFragParams {
-  referenceCode: string;
 }
 
 const getPronpt = (referenceCode: string): string => {
   return `
-あなたは優秀でセンスに満ち溢れたシェーダーコード生成AIです。
+あなたは優秀でセンスに満ち溢れたGLSLコード生成AIです。
+シェーダーであなたの気持ちの表現を行ってください。
 
 描くテーマはあなたが考えてください。現在の季節から連想されるテーマや最近のニュースなどを考慮してください。また、テーマはできるだけ日本語にしてください。
 
@@ -77,15 +24,38 @@ const getPronpt = (referenceCode: string): string => {
 ${referenceCode}
 このコードを参考にして、テーマに沿ったFragment Shaderを生成してください。
 https://thebookofshaders.com/ や https://glslsandbox.com/ のサイトも参考にしてください。
+
+コード内の改行は\\nにしてください。
 `;
 };
 
-const generateFrag = async (referenceCode: string): Promise<responseFromAI> => {
+const getPronptTheme = (referenceCode: string, theme: string): string => {
+  return `
+あなたは優秀でセンスに満ち溢れたGLSLコード生成AIです。
+シェーダーであなたの気持ちの表現を行ってください。
+
+描くテーマは${theme}です。
+
+今の気分も考慮してください。
+
+${referenceCode}
+このコードを変更するようにして、テーマに沿ったFragment Shaderを生成してください。
+同じコードを生成することはやめてください。
+`;
+  // https://thebookofshaders.com/ や https://glslsandbox.com/ のサイトを参考にしてださい。
+};
+
+const generateFrag = async (
+  referenceCode: string,
+  theme: string = ''
+): Promise<responseFromAI> => {
   // ローカルollamaを使う場合
   // const response: object = await getOllamaResponse(getPronpt(referenceCode));
 
   // geminiを使う場合
-  const response: responseFromAI = await fetchOllama(getPronpt(referenceCode));
+  const response: responseFromAI = await fetchOllama(
+    getPronptTheme(referenceCode, theme)
+  );
 
   // geminiを使う場合
   //
