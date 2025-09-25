@@ -36,12 +36,15 @@ const getPronptTheme = (referenceCode: string, theme: string): string => {
 
 描くテーマは${theme}です。
 
-今の気分も考慮してください。
+今のあなたの気分も考慮してください。
 
 ${referenceCode}
 このコードを変更するようにして、テーマに沿ったFragment Shaderを生成してください。
-同じコードを生成することはやめてください。
+たまには、ガラッとコードを変えても良いです。
+このコード内のuniform変数はそのまま使ってください。
+模様や色合い、動きなどをテーマに沿って変更してください。
 `;
+  // コード内に要素を追加してください。
   // https://thebookofshaders.com/ や https://glslsandbox.com/ のサイトを参考にしてださい。
 };
 

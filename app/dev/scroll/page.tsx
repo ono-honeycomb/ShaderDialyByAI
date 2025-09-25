@@ -20,10 +20,9 @@ interface MetaViewerProps {
 
 const firstFragCode = `precision highp float;
 uniform float u_time;
-uniform float u_noise;
-uniform float u_random;
+uniform float u_noise; // 0.0 - 1.0
 void main() {
-  vec3 color = vec3(sin(u_time) * 0.5 + 0.5, u_noise, u_random);
+  vec3 color = vec3(sin(u_time) * 0.5 + 0.5, u_noise, 0.0);
   gl_FragColor = vec4(color, 1.0);
 }
 `;
@@ -97,6 +96,7 @@ const page = () => {
           setCount(count + 1);
           // setCompilingData(null);
           // compilingData = null;
+          setInputValue('');
         }
       } else if (message == 'failed') {
       }
@@ -108,7 +108,7 @@ const page = () => {
       // コンポーネントのアンマウント時にリスナーを削除する
       window.removeEventListener('message', onCompiledMessage);
     };
-  }, [metaViewData, compilingData, count]);
+  }, [metaViewData, compilingData, count, inputValue]);
 
   // フォーム送信
   const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -163,7 +163,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="fixed w-full bottom-0 p-4">
+      <div className="fixed w-120 left-1/2 -translate-x-1/2 bottom-0 p-4">
         <div className="w-fit">
           <AIStatus status={aiStatus} />
         </div>
